@@ -32,21 +32,21 @@ int main (int argc, char *argv[])
     int per_process = amount_of_time / (amount_of_pro - 1);
 
     if (rank == 0) {
-        int result;
-        MPI_Recv(&result, 1, MPI_INT, 1, 000, MPI_COMM_WORLD, &status);
-        printf("I am from process 0. The result is: %d \n", result);
+        long result;
+        MPI_Recv(&result, 1, MPI_LONG, 1, 000, MPI_COMM_WORLD, &status);
+        printf("I am from process 0. The result is: %ld \n", result);
 
 
 
-        int result2;
-        MPI_Recv(&result2, 1, MPI_INT, 2, 000, MPI_COMM_WORLD, &status);
+        long result2;
+        MPI_Recv(&result2, 1, MPI_LONG, 2, 000, MPI_COMM_WORLD, &status);
         result += result2;
-        printf("I am from process 0. The result is: %d \n", result);
+        printf("I am from process 0. The result is: %ld \n", result);
 
 
 
-        int result3;
-        MPI_Recv(&result3, 1, MPI_INT, 3, 000, MPI_COMM_WORLD, &status);
+        long result3;
+        MPI_Recv(&result3, 1, MPI_LONG, 3, 000, MPI_COMM_WORLD, &status);
         result += result3;
 
 
@@ -54,37 +54,21 @@ int main (int argc, char *argv[])
         double time_used = (double )(clock() - start_time) / (double) CLOCKS_PER_SEC;
 
         printf("Time took: %f seconds\n", time_used);
-        printf("I am from process 0. The result is: %d \n", result);
+        printf("I am from process 0. The result is: %ld \n", result);
         printf("%d \n", amount_of_pro);
 
-    } else if (rank == 1) {
-        int sending_value = 0;
-        for (int i = 0; i < per_process; ++i) {
-            sending_value++;
+    } else {
+        long sending_value = 0;
+
+
+        for (int j = 0; j < 10; j++) {
+            for (int i = 0; i < per_process; ++i) {
+                sending_value++;
+            }
         }
 
-        MPI_Send(&sending_value, 1, MPI_INT, 0, 000, MPI_COMM_WORLD);
+        MPI_Send(&sending_value, 1, MPI_LONG, 0, 000, MPI_COMM_WORLD);
 
-
-//        MPI_Send(&sending_value, 1, MPI_INT, 0, 000,MPI_COMM_WORLD);
-
-    } else if (rank == 2) {
-        int sending_value = 0;
-
-        for (int i = 0; i < per_process; ++i) {
-            sending_value++;
-        }
-
-        MPI_Send(&sending_value, 1, MPI_INT, 0, 000, MPI_COMM_WORLD);
-
-    } else if (rank == 3) {
-        int sending_value = 0;
-
-        for (int i = 0; i < per_process; ++i) {
-            sending_value++;
-        }
-
-        MPI_Send(&sending_value, 1, MPI_INT, 0, 000, MPI_COMM_WORLD);
 
     }
 
