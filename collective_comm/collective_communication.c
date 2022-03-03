@@ -19,15 +19,17 @@ int main (int argc, char *argv[])
 {
     time_t start_time = clock();
     int amount_of_time = 999999999;
-
-
-    int amount_of_pro = MPI_Init(&argc, &argv);
-
+    int amount_of_pro;
     int rank;
+
+
+
+    MPI_Init(&argc, &argv);
     MPI_Status status;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amount_of_pro);
 
-    int per_process = amount_of_time / 3;
+    int per_process = amount_of_time / (amount_of_pro - 1);
 
     if (rank == 0) {
         int result;
@@ -53,6 +55,7 @@ int main (int argc, char *argv[])
 
         printf("Time took: %f seconds\n", time_used);
         printf("I am from process 0. The result is: %d \n", result);
+        printf("%d \n", amount_of_pro);
 
     } else if (rank == 1) {
         int sending_value = 0;
