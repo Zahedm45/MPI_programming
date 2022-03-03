@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD 99)
 # Add MPI Package to Project
 find_package(MPI REQUIRED)
 
-add_executable(test main.c)
+add_executable(test main.c collective_comm/collective_communication.c)
 
 
 # Add libraries for code completion and compiling
