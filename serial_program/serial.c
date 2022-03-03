@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
     long b = 0;
 
-    for (int i = 0; i < 10; ++i) {
+    for (int j = 0; j < 100; ++j) {
         for (int i = 0; i < amount_of_time; ++i) {
             b++;
         }

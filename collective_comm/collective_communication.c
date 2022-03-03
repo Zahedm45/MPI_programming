@@ -61,7 +61,7 @@ int main (int argc, char *argv[])
         long sending_value = 0;
 
 
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 100; j++) {
             for (int i = 0; i < per_process; ++i) {
                 sending_value++;
             }
