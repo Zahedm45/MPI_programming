@@ -2,12 +2,7 @@
 // Created by MD. Zahed on 03/03/2022.
 //
 
-/* communication.c
 
-   02346, F20, DTU
-
-   For instructions, see databar exercise 3.
-*/
 #include "mpi.h"
 #include <stdio.h>
 #include <time.h>
