@@ -2,7 +2,6 @@
 // Created by MD. Zahed on 03/03/2022.
 //
 
-
 /* communication.c
 
    02346, F20, DTU
