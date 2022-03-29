@@ -4,13 +4,15 @@
 
 #include "mpi.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 
 int main (int argc, char *argv[]){
 
     int rank;
     int csize, localX;
-    int arr[4];
+    //int arr[4];
+    int *buf = NULL;
 
 
 
@@ -19,9 +21,12 @@ int main (int argc, char *argv[]){
     MPI_Comm_size(MPI_COMM_WORLD, &csize);
 
 
-    localX = rank * 2;
+    localX = rank * 3;
+    if (rank == 0) {
+        buf =(int*) malloc(sizeof(int)*4);
+    }
 
-    MPI_Gather(&localX, 1, MPI_INT, arr, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Gather(&localX, 1, MPI_INT, buf, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
 
 
@@ -29,7 +34,7 @@ int main (int argc, char *argv[]){
 
     if (rank == 0) {
         for (int i = 0; i < 4; ++i) {
-            printf(" %d", arr[i]);
+            printf(" %d", buf[i]);
         }
         printf("\n");
     }
