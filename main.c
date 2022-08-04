@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <time.h>
 
+
 #define  MASTER		0
 
 int main (int argc, char *argv[])
