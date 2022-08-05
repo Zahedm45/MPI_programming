@@ -28,18 +28,12 @@ int main (int argc, char *argv[]){
 
     MPI_Gather(&localX, 1, MPI_INT, buf, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
-
-
-
-
     if (rank == 0) {
         for (int i = 0; i < 4; ++i) {
             printf(" %d", buf[i]);
         }
         printf("\n");
     }
-
-
 
 
     MPI_Finalize();
