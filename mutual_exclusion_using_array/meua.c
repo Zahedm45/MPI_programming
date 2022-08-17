@@ -44,7 +44,3 @@ int main (int argc, char *argv[]){
     MPI_Finalize();
     return 0;
 }
-
-/*
-int arr[] = {2,4,6,8,9,4};//6 elements
-int Length  = sizeof(arr)/sizeof(int);*/
